@@ -1,0 +1,10 @@
+Django>=4.2
+django-crispy-forms>=2.0
+crispy-bootstrap5>=0.7
+python-dotenv>=1.0
+Pillow>=10.0  # для загрузки изображений
+django-allauth>=0.54  # опционально для OAuth
+djangorestframework>=3.14  # опционально для REST API
+django-filter>=23.3  # для фильтрации
+django-htmx>=1.16  # опционально для HTMX
+psycopg2-binary>=2.9  # для PostgreSQL
