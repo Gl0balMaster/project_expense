@@ -1,7 +1,9 @@
+# expenses/views.py
 from django.shortcuts import render, redirect, get_object_or_404
 from .models import Expense
 from django.db.models import Sum, Count
 from datetime import date
+from django.contrib.auth.decorators import login_required
 
 def expense_list(request):
     """Главная страница со статистикой"""
@@ -24,8 +26,17 @@ def expense_list(request):
 def expense_create(request):
     """Создание нового расхода"""
     if request.method == 'POST':
-        # Здесь будет логика сохранения
-        return redirect('expense-list')
+        title = request.POST.get('title')
+        amount = request.POST.get('amount')
+        
+        if title and amount:
+            Expense.objects.create(
+                title=title,
+                amount=amount,
+                user=request.user if request.user.is_authenticated else None
+            )
+            return redirect('expense-list')
+    
     return render(request, 'expenses/expense_form.html', {})
 
 def expense_detail(request, pk):
@@ -37,8 +48,11 @@ def expense_update(request, pk):
     """Редактирование расхода"""
     expense = get_object_or_404(Expense, pk=pk)
     if request.method == 'POST':
-        # Здесь будет логика обновления
+        expense.title = request.POST.get('title')
+        expense.amount = request.POST.get('amount')
+        expense.save()
         return redirect('expense-detail', pk=pk)
+    
     return render(request, 'expenses/expense_form.html', {'expense': expense})
 
 def expense_delete(request, pk):
@@ -47,4 +61,5 @@ def expense_delete(request, pk):
     if request.method == 'POST':
         expense.delete()
         return redirect('expense-list')
+    
     return render(request, 'expenses/expense_confirm_delete.html', {'expense': expense})
