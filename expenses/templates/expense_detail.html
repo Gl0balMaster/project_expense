@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Детали расхода</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container mt-4">
+        <div class="card">
+            <div class="card-header bg-primary text-white">
+                <h4 class="mb-0">Детали расхода</h4>
+            </div>
+            <div class="card-body">
+                <h5>{{ expense.title }}</h5>
+<p><strong>Сумма:</strong> {{ expense.amount|floatformat:2 }} ₽</p>
+                <p><strong>Дата:</strong> {{ expense.date }}</p>
+                
+                <div class="mt-4">
+                    <a href="{% url 'expense-update' expense.pk %}" class="btn btn-warning">
+                        Редактировать
+                    </a>
+                    <a href="{% url 'expense-delete' expense.pk %}" class="btn btn-danger">
+                        Удалить
+                    </a>
+                    <a href="{% url 'expense-list' %}" class="btn btn-secondary">
+                        Назад к списку
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
