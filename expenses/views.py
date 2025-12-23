@@ -12,7 +12,7 @@ def logout_view(request):
     """Выход из системы"""
     logout(request)
     messages.success(request, 'Вы успешно вышли из системы')
-    return redirect('home')
+    return redirect('login')
 
 
 def register(request):
