@@ -1,52 +1,32 @@
-{% extends 'base.html' %}
-
-{% block title %}{% if expense %}Редактировать{% else %}Добавить{% endif %} расход{% endblock %}
-
-{% block content %}
-<div class="container py-4">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header {% if expense %}bg-warning{% else %}bg-success{% endif %} text-white">
-                    <h4 class="mb-0">
-                        <i class="bi {% if expense %}bi-pencil{% else %}bi-plus-circle{% endif %}"></i>
-                        {% if expense %}Редактировать расход{% else %}Добавить расход{% endif %}
-                    </h4>
-                </div>
-                <div class="card-body">
-                    <form method="post">
-                        {% csrf_token %}
-                        <div class="mb-3">
-                            <label class="form-label">Название</label>
-                            <input type="text" class="form-control" name="title"
-                                   value="{{ expense.title|default:'' }}"
-                                   placeholder="На что потратили?" required>
-                        </div>
-                        <div class="mb-3">
-                            <label class="form-label">Сумма (Br)</label>
-                            <input type="number" step="0.01" min="0.01" class="form-control" name="amount"
-                                   value="{{ expense.amount|default:'' }}"
-                                   placeholder="1000.00" required>
-                            <div class="form-text">Введите сумму с двумя знаками после запятой</div>
-                        </div>
-                        <div class="mb-3">
-                            <label class="form-label">Описание (необязательно)</label>
-                            <textarea class="form-control" name="description" rows="3"
-                                      placeholder="Дополнительная информация">{{ expense.description|default:'' }}</textarea>
-                        </div>
-                        <div class="d-flex gap-2">
-                            <button type="submit" class="btn {% if expense %}btn-warning{% else %}btn-success{% endif %}">
-                                <i class="bi {% if expense %}bi-save{% else %}bi-check-circle{% endif %}"></i>
-                                {% if expense %}Сохранить{% else %}Добавить{% endif %}
-                            </button>
-                            <a href="{% url 'expense-list' %}" class="btn btn-secondary">
-                                <i class="bi bi-x-circle"></i> Отмена
-                            </a>
-                        </div>
-                    </form>
-                </div>
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% if expense %}Редактировать{% else %}Добавить{% endif %} расход</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container mt-4">
+        <h2>{% if expense %}Редактировать расход{% else %}Добавить расход{% endif %}</h2>
+        
+        <form method="post" class="mt-4">
+            {% csrf_token %}
+            <div class="mb-3">
+                <label class="form-label">Название</label>
+                <input type="text" class="form-control" name="title" 
+                       value="{{ expense.title|default:'' }}" required>
             </div>
-        </div>
+            <div class="mb-3">
+                <label class="form-label">Сумма</label>
+                <input type="number" step="0.01" class="form-control" name="amount" 
+                       value="{{ expense.amount|default:'' }}" required>
+            </div>
+            <button type="submit" class="btn btn-success">
+                {% if expense %}Сохранить{% else %}Добавить{% endif %}
+            </button>
+            <a href="{% url 'expense-list' %}" class="btn btn-secondary">Отмена</a>
+        </form>
     </div>
-</div>
-{% endblock %}Br
+</body>
+</html>

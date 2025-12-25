@@ -17,7 +17,7 @@ Project\_expense
 
 # склонировать репозиторий: 
 
-# git clone https://github.com/Gl0balMaster/project\_expense
+# git clone https://github.com/Gl0balMaster/project_expense
 
 # 
 
