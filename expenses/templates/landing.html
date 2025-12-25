@@ -1,0 +1,84 @@
+{% extends 'base.html' %}
+
+{% block title %}Учет расходов - Начало работы{% endblock %}
+
+{% block content %}
+<div class="container py-5">
+    <div class="row justify-content-center">
+        <div class="col-lg-8 text-center">
+            <h1 class="display-4 mb-4">💰 Добро пожаловать в систему учета расходов!</h1>
+            <p class="lead mb-5">
+                Простой и удобный инструмент для контроля ваших финансов.
+                Начните отслеживать расходы прямо сейчас!
+            </p>
+
+            <div class="row justify-content-center">
+                <div class="col-md-5 mb-4">
+                    <div class="card border-primary h-100">
+                        <div class="card-header bg-primary text-white">
+                            <h5 class="mb-0"><i class="bi bi-person-plus"></i> Новый пользователь</h5>
+                        </div>
+                        <div class="card-body d-flex flex-column">
+                            <p>Создайте аккаунт чтобы начать отслеживать свои расходы</p>
+                            <div class="mt-auto">
+                                <a href="{% url 'register' %}" class="btn btn-primary w-100">
+                                    <i class="bi bi-person-plus"></i> Зарегистрироваться
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-5 mb-4">
+                    <div class="card border-success h-100">
+                        <div class="card-header bg-success text-white">
+                            <h5 class="mb-0"><i class="bi bi-box-arrow-in-right"></i> Уже есть аккаунт</h5>
+                        </div>
+                        <div class="card-body d-flex flex-column">
+                            <p>Войдите в свою учетную запись чтобы продолжить работу</p>
+                            <div class="mt-auto">
+                                <a href="{% url 'login' %}" class="btn btn-success w-100">
+                                    <i class="bi bi-box-arrow-in-right"></i> Войти
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="mt-5">
+                <h4 class="mb-3">Возможности системы:</h4>
+                <div class="row text-start">
+                    <div class="col-md-4 mb-3">
+                        <div class="d-flex">
+                            <i class="bi bi-cash-stack text-primary fs-4 me-3"></i>
+                            <div>
+                                <h6>Учет расходов</h6>
+                                <p class="small text-muted mb-0">Добавляйте и категоризируйте свои расходы</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 mb-3">
+                        <div class="d-flex">
+                            <i class="bi bi-pie-chart text-success fs-4 me-3"></i>
+                            <div>
+                                <h6>Статистика</h6>
+                                <p class="small text-muted mb-0">Наглядные диаграммы и отчеты по категориям</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 mb-3">
+                        <div class="d-flex">
+                            <i class="bi bi-shield-check text-warning fs-4 me-3"></i>
+                            <div>
+                                <h6>Безопасность</h6>
+                                <p class="small text-muted mb-0">Ваши данные защищены и доступны только вам</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
