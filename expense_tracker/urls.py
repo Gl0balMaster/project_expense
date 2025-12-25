@@ -1,7 +1,8 @@
 from django.contrib import admin
 from django.urls import path
 from django.contrib.auth import views as auth_views
-from expenses.views import expense_list, expense_create, expense_detail, expense_update, expense_delete, register, logout_view
+from expenses.views import (expense_list, expense_create, expense_detail,
+                            expense_update, expense_delete, register, logout_view, landing_page)
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -11,7 +12,9 @@ urlpatterns = [
         template_name='registration/login.html',
         redirect_authenticated_user=True
     ), name='login'),
-    
+
+    path('', landing_page, name='home'),
+
     path('logout/', logout_view, name='logout'),
     
     path('register/', register, name='register'),

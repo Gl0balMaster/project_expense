@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+    <!DOCTYPE html>
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
@@ -15,6 +15,22 @@
             <div class="card-body">
                 <h5>Вы уверены, что хотите удалить расход?</h5>
                 <div class="alert alert-warning">
+                {% if expense.description %}
+                <div class="mt-2">
+                    <p class="mb-1"><strong>Описание:</strong></p>
+                    <p class="mb-0 text-muted">{{ expense.description|truncatechars:150 }}</p>
+                </div>
+                {% endif %}
+                <div class="mt-2">
+                    <p class="mb-1"><strong>Категория:</strong></p>
+                    <p class="mb-0">
+                        {% for value, label in category_choices %}
+                            {% if value == expense.category %}
+                                <span class="badge bg-info">{{ label }}</span>
+                            {% endif %}
+                        {% endfor %}
+                    </p>
+                </div>
                     <strong>{{ expense.title }}</strong><br>
                     Сумма: {{ expense.amount }} ₽<br>
                     Дата: {{ expense.date|date:"d.m.Y" }}
