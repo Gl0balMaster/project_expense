@@ -26,4 +26,4 @@ def test_expense_model():
     
     assert expense.title == 'Тестовый расход'
     assert expense.amount == Decimal('1500.50')
-    assert str(expense) == 'Тестовый расход - 1500.50'
+    assert str(expense) == 'Тестовый расход - 1500.50 Br'

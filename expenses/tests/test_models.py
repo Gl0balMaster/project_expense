@@ -25,7 +25,7 @@ class TestExpenseModel:
     
     def test_expense_str(self, expense):
         """Тест строкового представления"""
-        assert str(expense) == f'{expense.title} - {expense.amount}'
+        assert str(expense) == f'{expense.title} - {expense.amount} Br'
     
     def test_expense_without_user(self):
         """Тест расхода без пользователя - должен вызывать ошибку"""

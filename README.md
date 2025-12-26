@@ -18,6 +18,7 @@ Expense Tracker — это веб-приложение на Django для отс
 git clone https://github.com/Gl0balMaster/project_expense
 
 - Установка и запуск проекта локально
+
 Вариант 1: Без Docker 
 1. Установить необходимые библиотеки:
 pip install -r requirements.txt
@@ -33,10 +34,7 @@ python.exe manage.py runserver
 1. Убедитесь что Docker Desktop запущен
 2. Сборка и запуск контейнеров:
 docker-compose up --build
-3. При первом запуске выполните миграции:
-docker-compose exec web python manage.py migrate
-docker-compose exec web python manage.py createsuperuser
-4. Открыть в браузере:
+3. Открыть в браузере:
 Приложение: http://localhost:8000
 Админка: http://localhost:8000/admin
 

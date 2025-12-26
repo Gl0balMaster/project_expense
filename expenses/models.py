@@ -31,4 +31,4 @@ class Expense(models.Model):
         ordering = ['-date', '-created_at']
 
     def __str__(self):
-        return f"{self.title} - {self.amount} ₽"
+        return f"{self.title} - {self.amount} Br"

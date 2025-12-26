@@ -10,10 +10,12 @@ class TestViews:
         """Тест главной страницы"""
         response = client.get(reverse('home'))
         assert response.status_code == 200
-        assert 'Контролируйте свои финансы' in response.content.decode()
+        assert 'Учет расходов' in response.content.decode() 
     
     def test_expense_list_view(self, client, multiple_expenses):
         """Тест списка расходов"""
+        # Авторизуемся как владелец расходов
+        client.force_login(multiple_expenses[0].user)
         response = client.get(reverse('expense-list'))
         assert response.status_code == 200
         assert len(response.context['expenses']) == 5
@@ -26,7 +28,7 @@ class TestViews:
     def test_expense_create_requires_login(self, client):
         """Тест что создание требует авторизации"""
         response = client.get(reverse('expense-create'))
-        assert response.status_code == 302  # Редирект на логин
+        assert response.status_code == 302 
         assert '/login/' in response.url
     
     def test_expense_create_authenticated(self, authenticated_client, user):
@@ -36,7 +38,7 @@ class TestViews:
             'amount': '1500.50'
         })
         
-        assert response.status_code == 302  # Редирект
+        assert response.status_code == 302 
         
         from expenses.models import Expense
         assert Expense.objects.filter(title='Новый расход').exists()
@@ -61,5 +63,5 @@ class TestViews:
             'password2': 'ComplexPass123!'
         })
         
-        assert response.status_code == 302  # Редирект после успешной регистрации
+        assert response.status_code == 302 
         assert User.objects.filter(username='newuser123').exists()

@@ -10,7 +10,7 @@ class ExpenseForm(forms.ModelForm):
             'step': '0.01',
             'placeholder': '0.00'
         }),
-        label="Сумма (₽)"
+        label="Сумма (Br)"
     )
 
     class Meta:
